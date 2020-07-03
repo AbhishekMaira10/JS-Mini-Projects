@@ -122,31 +122,91 @@ li.appendChild(link);
 console.log(li);
 */
 
-//Replace Element
+/*
+Remove and Replace Element
 
-//Create a new heading
+Create a new heading
 const newHeading = document.createElement("h2");
 newHeading.id = "task-title";
 newHeading.appendChild(document.createTextNode("Task List"));
 
-//Get the old headinng
+Get the old headinng
 const oldHeading = document.getElementById("task-title");
 const cardAction = document.querySelector(".card-action");
 
-//Replace
+Replace
 cardAction.replaceChild(newHeading, oldHeading);
 
-// Remove Element
+Remove Element
 const lis = document.querySelectorAll("li");
 const list = document.querySelector("ul");
 lis[0].remove();
 
-// Remove Child
+Remove Child
 list.removeChild(lis[3]);
 
-//Class & Attr
+Class & Attr
 const firstLi = document.querySelector("li:first-child");
 const link = firstLi.children[0];
 console.log(link);
 
 let val = link.setAttribute("href", "http://google.com");
+*/
+
+//Event Listners and Event Object
+
+//document.querySelector(".clear-tasks").addEventListener("click", onClick);
+
+const card = document.querySelector(".card");
+const heading = document.querySelector("h5");
+
+card.addEventListener("mousemove", runEvent);
+
+function runEvent(e) {
+  //console.log("Hello-World");
+  heading.textContent = `MouseX: ${e.offsetX} MouseY: ${e.offsetY}`;
+  document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 40)`;
+}
+
+// Event bubbling
+
+document.querySelector(".card-title").addEventListener("click", function () {
+  console.log("card-title");
+});
+
+document.querySelector(".card-content").addEventListener("click", function () {
+  console.log("card-content");
+});
+
+// Event Delegation
+document.body.addEventListener("click", deleteItem);
+
+function deleteItem(e) {
+  // if (e.target.parentElement.className === "delete-item secondary-content")
+  //   console.log("delete item");
+
+  if (e.target.parentElement.classList.contains("delete-item"))
+    e.target.parentElement.parentElement.remove();
+}
+
+// Local Storage
+document.querySelector("form").addEventListener("submit", function (e) {
+  const task = document.getElementById("task").value;
+
+  let tasks =
+    localStorage.getItem("tasks") === null
+      ? []
+      : JSON.parse(localStorage.getItem("tasks"));
+
+  tasks.push(task);
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  alert("task saved");
+
+  e.preventDefault();
+});
+
+const tasksArr = JSON.parse(localStorage.getItem("tasks"));
+tasksArr.forEach(function (task) {
+  console.log(task);
+});
