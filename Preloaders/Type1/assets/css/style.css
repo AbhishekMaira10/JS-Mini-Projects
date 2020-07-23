@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|ZCOOL+KuaiLe&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  width: 90%;
+  opacity: 0;
+  display: none;
+  transition: opacity 1s ease-in;
+}
+
+.main h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.main p {
+  font-size: 25px;
+  color: #333;
+}
+
+.btn {
+  display: inline-block;
+  background: purple;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
